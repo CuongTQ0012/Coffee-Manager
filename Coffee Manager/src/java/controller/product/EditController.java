@@ -42,7 +42,7 @@ public class EditController extends HttpServlet {
         request.setAttribute("cate", cate);
         
         
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         Product p = new Product();
         
         p.setpID(id);
@@ -72,7 +72,7 @@ public class EditController extends HttpServlet {
         String raw_did = request.getParameter("did");
 
         Product p = new Product();
-        p.setpID(Integer.parseInt(raw_id));
+        p.setpID(raw_id);
         p.setpName(raw_name);
         p.setpQuantity(Float.parseFloat(raw_quantity));
         

@@ -35,7 +35,7 @@ public class ProductDBContext extends DBContext<Product> {
                 c.setcName(rs.getString("cName"));
 
                 Product p = new Product();
-                p.setpID(rs.getInt("pID"));
+                p.setpID(rs.getString("pID"));
                 p.setpName(rs.getString("pName"));
                 p.setpQuantity(rs.getFloat("pQuantity"));
                 p.setCate(c);
@@ -57,7 +57,7 @@ public class ProductDBContext extends DBContext<Product> {
             String sql = "SELECT p.pID,p.pName,p.pQuantity,p.cID,cName FROM Product p INNER JOIN Category c \n"
                     + "ON p.cID = c.cid WHERE p.pID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, model.getpID());
+            stm.setString(1, model.getpID());
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
 
@@ -67,7 +67,7 @@ public class ProductDBContext extends DBContext<Product> {
 
                 Product s = new Product();
 
-                s.setpID(rs.getInt("pID"));
+                s.setpID(rs.getString("pID"));
                 s.setpName(rs.getString("pName"));
                 s.setpQuantity(rs.getFloat("pQuantity"));
                 s.setCate(d);
@@ -99,7 +99,7 @@ public class ProductDBContext extends DBContext<Product> {
                     + "           ,?)\n";
             PreparedStatement stm = connection.prepareStatement(sql2);
 
-            stm.setInt(1, model.getpID());
+            stm.setString(1, model.getpID());
             stm.setString(2, model.getpName());
             stm.setFloat(3, model.getpQuantity());
             stm.setInt(4, model.getCate().getcID());
@@ -125,7 +125,7 @@ public class ProductDBContext extends DBContext<Product> {
                     + " WHERE [pID]= ?";
 
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(4, model.getpID());
+            stm.setString(4, model.getpID());
             stm.setString(1, model.getpName());
             stm.setFloat(2, model.getpQuantity());
             stm.setInt(3, model.getCate().getcID());
@@ -146,7 +146,7 @@ public class ProductDBContext extends DBContext<Product> {
                     + "      WHERE [pID]= ?";
             
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, model.getpID());
+            stm.setString(1, model.getpID());
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);

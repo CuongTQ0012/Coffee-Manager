@@ -33,7 +33,7 @@ public class DeleteController extends HttpServlet {
             throws ServletException, IOException {
         
         ProductDBContext dbPro = new ProductDBContext();
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         Product p = new Product();
         
         p.setpID(id);

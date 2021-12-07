@@ -11,28 +11,22 @@ package model;
  */
 public class Product extends BaseModel{
 
-    private int pID;
+    private String pID;
     private String pName;
     private float pQuantity;
     private Category cate;//down vi 
 
-    public Product() {
-    }
-
-    public Product(int pID, String pName, float pQuantity, Category cate) {
-        this.pID = pID;
-        this.pName = pName;
-        this.pQuantity = pQuantity;
-        this.cate = cate;
-    }
-
-    public int getpID() {
+    public String getpID() {
         return pID;
     }
 
-    public void setpID(int pID) {
+    public void setpID(String pID) {
         this.pID = pID;
     }
+
+    
+    
+
 
     public String getpName() {
         return pName;

@@ -68,7 +68,7 @@ public class AddController extends HttpServlet {
         
         
         Product p = new Product();
-        p.setpID(Integer.parseInt(raw_pId));
+        p.setpID(raw_pId);
         p.setpName(raw_pName);
         p.setpQuantity(Float.parseFloat(raw_PQuantity));
         

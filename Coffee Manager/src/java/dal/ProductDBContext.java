@@ -52,41 +52,34 @@ public class ProductDBContext extends DBContext<Product> {
 
     @Override
     public Product get(Product model) {
-        
+
         try {
-            String sql = "SELECT p.pID,p.pName,p.pQuantity,p.cID,cName FROM Product p INNER JOIN Category c \n" +
-"ON p.cID = c.cid WHERE p.pID = ?";
+            String sql = "SELECT p.pID,p.pName,p.pQuantity,p.cID,cName FROM Product p INNER JOIN Category c \n"
+                    + "ON p.cID = c.cid WHERE p.pID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, model.getpID());
             ResultSet rs = stm.executeQuery();
-            while(rs.next())
-            {
-                
-                
+            while (rs.next()) {
+
                 Category d = new Category();
                 d.setcID(rs.getInt("cID"));
                 d.setcName(rs.getString("cName"));
-                
-                
+
                 Product s = new Product();
-                
+
                 s.setpID(rs.getInt("pID"));
                 s.setpName(rs.getString("pName"));
                 s.setpQuantity(rs.getFloat("pQuantity"));
                 s.setCate(d);
-                
+
                 return s;
-                
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        
-        
-        
-        
+
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -136,8 +129,7 @@ public class ProductDBContext extends DBContext<Product> {
             stm.setString(1, model.getpName());
             stm.setFloat(2, model.getpQuantity());
             stm.setInt(3, model.getCate().getcID());
-            
-            
+
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -148,7 +140,19 @@ public class ProductDBContext extends DBContext<Product> {
 
     @Override
     public void delete(Product model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            String sql = "DELETE FROM [Product]\n"
+                    + "      WHERE [pID]= ?";
+            
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, model.getpID());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

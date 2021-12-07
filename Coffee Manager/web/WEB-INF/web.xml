@@ -12,6 +12,10 @@
         <servlet-name>EditController</servlet-name>
         <servlet-class>controller.product.EditController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteController</servlet-name>
+        <servlet-class>controller.product.DeleteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListController</servlet-name>
         <url-pattern>/product/list</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>EditController</servlet-name>
         <url-pattern>/product/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteController</servlet-name>
+        <url-pattern>/product/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

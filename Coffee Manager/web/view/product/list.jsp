@@ -32,6 +32,9 @@
                 <td>
                     <input type="button" value="Edit" 
                            onclick="window.location.href = 'edit?id=<%=p.getpID()%>' " />
+                    
+                    <input type="button" value="Delete" 
+                           onclick="window.location.href = 'delete?id=<%=p.getpID()%>' " />
                 </td>
             </tr>    
             <%}%>

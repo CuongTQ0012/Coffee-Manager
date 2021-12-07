@@ -52,7 +52,42 @@ public class ProductDBContext extends DBContext<Product> {
 
     @Override
     public Product get(Product model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            String sql = "SELECT p.pID,p.pName,p.pQuantity,p.cID,cName FROM Product p INNER JOIN Category c \n" +
+"ON p.cID = c.cid WHERE p.pID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, model.getpID());
+            ResultSet rs = stm.executeQuery();
+            while(rs.next())
+            {
+                
+                
+                Category d = new Category();
+                d.setcID(rs.getInt("cID"));
+                d.setcName(rs.getString("cName"));
+                
+                
+                Product s = new Product();
+                
+                s.setpID(rs.getInt("pID"));
+                s.setpName(rs.getString("pName"));
+                s.setpQuantity(rs.getFloat("pQuantity"));
+                s.setCate(d);
+                
+                return s;
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+        
+        
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -88,7 +123,27 @@ public class ProductDBContext extends DBContext<Product> {
 
     @Override
     public void update(Product model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            String sql = "UPDATE [Product]\n"
+                    + "   SET [pName] = ?\n"
+                    + "      ,[pQuantity] = ?\n"
+                    + "      ,[cID] = ?\n"
+                    + " WHERE [pID]= ?";
+
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(4, model.getpID());
+            stm.setString(1, model.getpName());
+            stm.setFloat(2, model.getpQuantity());
+            stm.setInt(3, model.getCate().getcID());
+            
+            
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

@@ -19,6 +19,7 @@
                 <td>Name</td>
                 <td>Quantity</td>
                 <td>Unit</td>
+                <td></td>
             </tr>
             
             
@@ -27,8 +28,11 @@
                 <td><%=p.getpID()%></td>
                 <td><%=p.getpName()%></td>
                 <td><%=p.getpQuantity()%></td>
-                <td><%=p.getCate().getcName()%></td
-                
+                <td><%=p.getCate().getcName()%></td>
+                <td>
+                    <input type="button" value="Edit" 
+                           onclick="window.location.href = 'edit?id=<%=p.getpID()%>' " />
+                </td>
             </tr>    
             <%}%>
             

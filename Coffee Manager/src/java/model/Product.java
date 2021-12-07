@@ -11,17 +11,20 @@ package model;
  */
 public class Product extends BaseModel{
 
-    public static void add(Product p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     private int pID;
     private String pName;
     private float pQuantity;
-    private Category cID;//down vi 
+    private Category cate;//down vi 
 
     public Product() {
     }
 
+    public Product(int pID, String pName, float pQuantity, Category cate) {
+        this.pID = pID;
+        this.pName = pName;
+        this.pQuantity = pQuantity;
+        this.cate = cate;
+    }
 
     public int getpID() {
         return pID;
@@ -47,14 +50,15 @@ public class Product extends BaseModel{
         this.pQuantity = pQuantity;
     }
 
-    public Category getcID() {
-        return cID;
+    public Category getCate() {
+        return cate;
     }
 
-    public void setcID(Category cID) {
-        this.cID = cID;
+    public void setCate(Category cate) {
+        this.cate = cate;
     }
 
+    
     
     
     

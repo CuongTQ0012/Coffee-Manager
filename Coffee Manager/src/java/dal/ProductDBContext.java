@@ -18,43 +18,35 @@ import model.Product;
  *
  * @author Admin
  */
-public class ProductDBContext extends DBContext<Product>{
+public class ProductDBContext extends DBContext<Product> {
 
     @Override
     public ArrayList<Product> list() {
-        
+
         ArrayList<Product> product = new ArrayList<>();
         try {
-            String sql = "SELECT p.pID,p.pName,p.pQuantity,p.cID,cName FROM Product p INNER JOIN Category c\n" +
-"                    ON p.cID = c.cid";
+            String sql = "SELECT p.pID,p.pName,p.pQuantity,p.cID,cName FROM Product p INNER JOIN Category c\n"
+                    + "                    ON p.cID = c.cid";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 Category c = new Category();
                 c.setcID(rs.getInt("cID"));
                 c.setcName(rs.getString("cName"));
-                
-                
-                
+
                 Product p = new Product();
                 p.setpID(rs.getInt("pID"));
                 p.setpName(rs.getString("pName"));
                 p.setpQuantity(rs.getFloat("pQuantity"));
-                p.setcID(c);
-                
-                
+                p.setCate(c);
+
                 product.add(p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return product;
-        
-        
-        
-        
-        
+
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -65,7 +57,33 @@ public class ProductDBContext extends DBContext<Product>{
 
     @Override
     public void insert(Product model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            String sql2 = "INSERT INTO [Product]\n"
+                    + "           ([pID]\n"
+                    + "           ,[pName]\n"
+                    + "           ,[pQuantity]\n"
+                    + "           ,[cID])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)\n";
+            PreparedStatement stm = connection.prepareStatement(sql2);
+
+            stm.setInt(1, model.getpID());
+            stm.setString(2, model.getpName());
+            stm.setFloat(3, model.getpQuantity());
+            stm.setInt(4, model.getCate().getcID());
+
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+
+            Logger.getLogger(ProductDBContext.class.getName());
+        }
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -77,5 +95,5 @@ public class ProductDBContext extends DBContext<Product>{
     public void delete(Product model) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

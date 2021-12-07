@@ -29,6 +29,11 @@ public abstract class DBContext<T extends BaseModel> {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
+    
+    
     public abstract ArrayList<T> list();
     public abstract T get(T model);
     public abstract void insert(T model);

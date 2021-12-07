@@ -21,7 +21,7 @@ import model.Product;
  *
  * @author Admin
  */
-public class ListController extends HttpServlet {
+public class AddController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +32,6 @@ public class ListController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        ProductDBContext db = new ProductDBContext();
-        ArrayList<Product> product = db.list();
-        request.setAttribute("product", product);
-        request.getRequestDispatcher("../view/product/list.jsp").forward(request, response);
-
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -54,21 +45,47 @@ public class ListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        ArrayList<Category> cate = dbCate.list();
+        request.setAttribute("cate", cate);
+        request.getRequestDispatcher("../view/product/add.jsp").forward(request, response);
+        
     }
+    
+    ProductDBContext dbPro = new ProductDBContext();
+    CategoryDBContext dbCate = new CategoryDBContext();
+    
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String raw_pId = request.getParameter("pid");
+        String raw_pName= request.getParameter("pname");
+        String raw_PQuantity= request.getParameter("pquantity");
+        String raw_unit= request.getParameter("unit");
+        
+        
+        Product p = new Product();
+        p.setpID(Integer.parseInt(raw_pId));
+        p.setpName(raw_pName);
+        p.setpQuantity(Float.parseFloat(raw_PQuantity));
+        
+        
+        Category c = new Category();
+        c.setcID(Integer.parseInt(raw_unit));
+        p.setCate(c);
+        
+        
+        dbPro.insert(p);
+        response.sendRedirect("list");
+        
+        
+        
+        
+        
+        
     }
 
     /**

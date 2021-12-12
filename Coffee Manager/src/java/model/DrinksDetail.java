@@ -13,6 +13,7 @@ public class DrinksDetail extends BaseModel{
     private Drinks dID;
     private Product pid;
     private float ddQuantity;
+    private int ddID;
 
     public Drinks getdID() {
         return dID;
@@ -36,6 +37,14 @@ public class DrinksDetail extends BaseModel{
 
     public void setDdQuantity(float ddQuantity) {
         this.ddQuantity = ddQuantity;
+    }
+
+    public int getDdID() {
+        return ddID;
+    }
+
+    public void setDdID(int ddID) {
+        this.ddID = ddID;
     }
     
     

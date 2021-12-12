@@ -5,18 +5,14 @@
  */
 package controller.drinks;
 
-import dal.DrinksDBContext;
 import dal.DrinksDetailDBContext;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
-import model.Drinks;
 import model.DrinksDetail;
 import model.Product;
 
@@ -24,7 +20,7 @@ import model.Product;
  *
  * @author Admin
  */
-public class DetailControoler1 extends HttpServlet {
+public class DeleteDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,6 +31,26 @@ public class DetailControoler1 extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        DrinksDetailDBContext dbdd = new DrinksDetailDBContext();
+        
+        String id = request.getParameter("id");
+        int id_int = Integer.parseInt(id);
+        DrinksDetail dd = new DrinksDetail();
+        dd.setDdID(id_int);
+        
+        
+        
+        dbdd.delete(dd);
+        
+        response.sendRedirect("list");
+//        String respon = "detail1?id=" + id;
+//        
+//        response.sendRedirect(respon);
+        
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -48,27 +64,8 @@ public class DetailControoler1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        String id = request.getParameter("id");
-        int id_int = Integer.parseInt(id);
-        
-
-        
-        ArrayList<DrinksDetail> ddetail = ddetailDB.getdetail(id_int);
-        request.setAttribute("ddetail", ddetail);
-        
-        
-        request.getRequestDispatcher("../view/drinks/detail1.jsp").forward(request, response);
-        
-        
-        
-        
+        processRequest(request, response);
     }
-    DrinksDetailDBContext ddetailDB = new DrinksDetailDBContext();
-    DrinksDBContext drinkDB = new DrinksDBContext();
-    ProductDBContext proDB  = new ProductDBContext();
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -81,6 +78,7 @@ public class DetailControoler1 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**

@@ -6,9 +6,14 @@
 package dal;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Drinks;
 import model.DrinksDetail;
+import model.Product;
 
 /**
  *
@@ -25,6 +30,51 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
     public DrinksDetail get(DrinksDetail model) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+    public ArrayList<DrinksDetail> getdetail(int id){
+        
+        ArrayList<DrinksDetail> ddrinks = new ArrayList<>();
+        
+        try {
+            String sql = "SELECT * FROM Drinks d JOIN DrinksDetail dd ON d.dID = dd.dID "
+                    + "Join Product p on p.pID = dd.pID "
+                    + "wHERE d.dID = ?"
+                    ;
+            
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+
+                
+                Drinks d = new Drinks();
+//                d.setdID(rs.getInt("dID"));
+                d.setdName(rs.getString("dName"));
+                
+                Product p = new Product();
+                p.setpName(rs.getString("pName"));
+                
+                
+                DrinksDetail dd = new DrinksDetail();
+                
+                dd.setdID(d);
+                dd.setPid(p);
+                dd.setDdQuantity(rs.getFloat("ddQuantity"));
+                dd.setDdID(rs.getInt("ddID"));
+                ddrinks.add(dd);
+                
+
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ddrinks;
+        
+        
+    }
+    
 
     @Override
     public void insert(DrinksDetail model) {
@@ -63,7 +113,21 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
 
     @Override
     public void delete(DrinksDetail model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+         try {
+            String sql = "DELETE FROM [DrinksDetail]\n"
+                    + "      WHERE [ddID]= ?";
+            
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, model.getDdID());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

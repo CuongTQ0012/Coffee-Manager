@@ -31,6 +31,7 @@
                 <td>Drink</td>
                 <td>Product</td>
                 <td>Quan</td>
+                <td></td>
             </tr>
 
             <% for (DrinksDetail dd : drinksdetail) {%>
@@ -38,6 +39,14 @@
                 <td><%=dd.getdID().getdName()%></td>
                 <td><%=dd.getPid().getpName()%></td>
                 <td><%=dd.getDdQuantity()%></td>
+                <td>
+                    <input type="button" value="Edit" 
+                           onclick="window.location.href = 'edit?id=<%=dd.getDdID()%>' " />
+                    
+                    <input type="button" value="Delete" 
+                           onclick="window.location.href = 'delete_detail?id=<%=dd.getDdID()%>' " />
+                    
+                </td>
             </tr>    
             <%}%>
         </table>

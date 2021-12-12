@@ -10,7 +10,7 @@
         %>
     </head>
     <body>
-
+        
         <form method="POST" action="add_drinks_detail">
 
 

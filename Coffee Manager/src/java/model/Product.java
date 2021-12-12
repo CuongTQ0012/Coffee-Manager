@@ -16,6 +16,17 @@ public class Product extends BaseModel{
     private float pQuantity;
     private Category cate;//down vi 
 
+    public Product(String pID, float pQuantity) {
+        this.pID = pID;
+        this.pQuantity = pQuantity;
+    }
+
+    public Product() {
+    }
+
+    
+    
+    
     public String getpID() {
         return pID;
     }

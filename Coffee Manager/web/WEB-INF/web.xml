@@ -36,6 +36,30 @@
         <servlet-name>AddDrinksDetailController</servlet-name>
         <servlet-class>controller.drinks.AddDrinksDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteDetailController</servlet-name>
+        <servlet-class>controller.drinks.DeleteDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListTotalController</servlet-name>
+        <servlet-class>controller.total.ListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTotalController</servlet-name>
+        <servlet-class>controller.total.AddController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeteleTotalController</servlet-name>
+        <servlet-class>controller.total.DeteleController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditTotalController</servlet-name>
+        <servlet-class>controller.total.EditController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Action</servlet-name>
+        <servlet-class>controller.total.Action</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListController</servlet-name>
         <url-pattern>/product/list</url-pattern>
@@ -71,6 +95,30 @@
     <servlet-mapping>
         <servlet-name>AddDrinksDetailController</servlet-name>
         <url-pattern>/drinks/add_drinks_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDetailController</servlet-name>
+        <url-pattern>/drinks/delete_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListTotalController</servlet-name>
+        <url-pattern>/total/list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTotalController</servlet-name>
+        <url-pattern>/total/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeteleTotalController</servlet-name>
+        <url-pattern>/total/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTotalController</servlet-name>
+        <url-pattern>/total/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Action</servlet-name>
+        <url-pattern>/total/action</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

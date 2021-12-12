@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/src/java/controller/drinks/AddController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/src/java/controller/drinks/ListController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/src/java/dal/ProductDBContext.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/web/view/drinks/add.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/src/java/dal/DrinksDBContext.java</file>
-            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/src/java/controller/product/AddController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/web/view/drinks/detail1.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/src/java/controller/drinks/AddDrinksDetailController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/Assignment/Coffee%20Manager/src/java/controller/drinks/DeleteDetailController.java</file>
         </group>
     </open-files>
 </project-private>

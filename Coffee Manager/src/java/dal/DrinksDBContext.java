@@ -80,7 +80,7 @@ public class DrinksDBContext extends DBContext<Drinks> {
                 dd.setdID(d);
                 dd.setPid(p);
                 dd.setDdQuantity(rs.getFloat("ddQuantity"));
-                
+                dd.setDdID(rs.getInt("ddID"));
                 ddrinks.add(dd);
                 
 

@@ -26,7 +26,7 @@
                 <td></td><!--image-->
                 <td>
                     <input type="button" value="Detail" 
-                           onclick="window.location.href = 'detail?id=<%=p.getdID()%>' " />
+                           onclick="window.location.href = 'detail1?id=<%=p.getdID()%>' " />
                     
                 </td>
             </tr>    

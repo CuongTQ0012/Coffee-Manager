@@ -28,6 +28,10 @@
         <servlet-name>DetailController</servlet-name>
         <servlet-class>controller.drinks.DetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetailControoler1</servlet-name>
+        <servlet-class>controller.drinks.DetailControoler1</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListController</servlet-name>
         <url-pattern>/product/list</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>DetailController</servlet-name>
         <url-pattern>/drinks/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailControoler1</servlet-name>
+        <url-pattern>/drinks/detail1</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

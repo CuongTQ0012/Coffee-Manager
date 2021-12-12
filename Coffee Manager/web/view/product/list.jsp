@@ -25,6 +25,7 @@
             
             <% for (Product p : product) {%>
             <tr>
+                
                 <td><%=p.getpID()%></td>
                 <td><%=p.getpName()%></td>
                 <td><%=p.getpQuantity()%></td>

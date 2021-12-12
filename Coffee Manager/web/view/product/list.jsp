@@ -13,6 +13,9 @@
         %>
     </head>
     <body>
+        <a href="../product/list">Product</a>
+        <a href="../drinks/list">Drinks</a>
+        <a href="../total/list">Total</a>
         <table border="1px"> 
             <tr>
                 <td>ID</td>

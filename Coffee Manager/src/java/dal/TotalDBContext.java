@@ -58,8 +58,7 @@ public class TotalDBContext extends DBContext<Total> {
     public Total get(Total model) {
 
         try {
-            String sql = "SELECT * FROM Total t  INNER JOIN Drinks d \n"
-                    + "                    ON t.tID = d.dID  WHERE t.tID = ?";
+            String sql = "SELECT * FROM Total t  INNER JOIN Drinks d ON t.dID = d.dID  WHERE t.tID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, model.gettID());
             ResultSet rs = stm.executeQuery();

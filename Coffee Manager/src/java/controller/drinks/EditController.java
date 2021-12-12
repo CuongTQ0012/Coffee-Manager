@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.total;
+package controller.drinks;
 
-import dal.TotalDBContext;
+import dal.DrinksDetailDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Drinks;
-import model.Total;
+import model.DrinksDetail;
+import model.Product;
 
 /**
  *
@@ -36,20 +36,21 @@ public class EditController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+//        String id = request.getParameter("id");
+//        int id_int = Integer.parseInt(id);
+        
+        DrinksDetail dd = new DrinksDetail();
+        dd.setDdID(8);
         
         
-        String id = request.getParameter("id");
-        int id_int = Integer.parseInt(id);
-        Total t = new Total();
-        t.settID(id_int);
         
-        Total total = dbTotal.get(t);
-        request.setAttribute("total", total);
-        request.getRequestDispatcher("../view/total/edit.jsp").forward(request, response);
+        DrinksDetail drinksDetail = dbdd.get(dd);
         
+        request.setAttribute("drinksDetail", drinksDetail);
+        request.getRequestDispatcher("../view/drinks/editdd.jsp").forward(request, response);
     }
     
-    TotalDBContext dbTotal = new TotalDBContext();
+    DrinksDetailDBContext dbdd = new DrinksDetailDBContext();
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -62,37 +63,36 @@ public class EditController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String raw_tid = request.getParameter("tid");
+        String raw_ddid = request.getParameter("ddid");
         String raw_did = request.getParameter("did");
+        String raw_pid = request.getParameter("pid");
         String raw_tquan = request.getParameter("tquan");
-        String raw_tdob = request.getParameter("tdob");
 
-        
-        
-        
-        Total t = new Total();
-//        t.settQuantity(Float.parseFloat(raw_tquan));
-//        t.setTdob(Date.valueOf(raw_tdob));
-//        
-//        
         Drinks d = new Drinks();
         d.setdID(Integer.parseInt(raw_did));
-        t.setdID(d);
         
-        t.settID(Integer.parseInt(raw_tid));
-        t.settQuantity(Float.parseFloat(raw_tquan));
-        t.setTdob(Date.valueOf(raw_tdob));
+        
+        Product p = new Product();
+        p.setpID(raw_pid);
+        
+        DrinksDetail dd = new DrinksDetail();
+        dd.setDdID(Integer.parseInt(raw_ddid));
+        dd.setDdQuantity(Float.parseFloat(raw_tquan));
+        dd.setPid(p);
+        dd.setdID(d);
+        
+        
+        
         
         
         
         
 
-        dbTotal.update(t);
+        dbdd.update(dd);
         response.sendRedirect("list");
-        
     }
 
+    
     /**
      * Returns a short description of the servlet.
      *

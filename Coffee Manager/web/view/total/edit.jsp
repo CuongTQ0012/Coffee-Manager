@@ -13,6 +13,7 @@
     </head>
         
     <body>
+        <a href="../product/list">Product</a>
         <form method="POST" action="edit">
             id: <%=total.gettID()%> <br>
             Drinks: <%=total.getdID().getdID()%> 

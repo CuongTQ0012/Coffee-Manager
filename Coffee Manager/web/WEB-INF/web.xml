@@ -60,6 +60,10 @@
         <servlet-name>Action</servlet-name>
         <servlet-class>controller.total.Action</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Edit_DD_Controller</servlet-name>
+        <servlet-class>controller.drinks.EditController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListController</servlet-name>
         <url-pattern>/product/list</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>Action</servlet-name>
         <url-pattern>/total/action</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Edit_DD_Controller</servlet-name>
+        <url-pattern>/drinks/edit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

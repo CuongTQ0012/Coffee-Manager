@@ -9,7 +9,7 @@
         <%
             Total total = (Total)request.getAttribute("total");
         %>
-        
+    <h1>Edit Total</h1>
     </head>
         
     <body>

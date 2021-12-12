@@ -6,16 +6,24 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class Total extends BaseModel{
+public class Total extends BaseModel {
+
     private int tID;
     private Drinks dID;
     private float tQuantity;
     private Date tdob;
+
+    private ArrayList<Total> total = new ArrayList<>();
+
+    public ArrayList<Total> getTotal() {
+        return total;
+    }
 
     public int gettID() {
         return tID;
@@ -33,7 +41,6 @@ public class Total extends BaseModel{
         this.dID = dID;
     }
 
-
     public float gettQuantity() {
         return tQuantity;
     }
@@ -49,10 +56,5 @@ public class Total extends BaseModel{
     public void setTdob(Date tdob) {
         this.tdob = tdob;
     }
-    
-    
-    
-    
-    
-    
+
 }

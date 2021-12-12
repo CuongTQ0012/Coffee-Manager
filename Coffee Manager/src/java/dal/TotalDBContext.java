@@ -145,6 +145,46 @@ public class TotalDBContext extends DBContext<Total> {
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public void insert1(Total model) {
+try {
+            connection.setAutoCommit(false);
+            String sql = "INSERT INTO [Total]\n"
+                    + "           ([dID]\n"
+                    + "           ,[tQuantity]\n"
+                    + "           ,[tdob])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            
+            for (Total s : model.getTotal()) {
+                PreparedStatement rs = connection.prepareStatement(sql);
+                rs.setInt(1, s.getdID().getdID());
+                rs.setFloat(2, s.gettQuantity());
+                rs.setDate(3, s.getTdob());
+                rs.executeUpdate();
+            }
+            connection.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(TotalDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(TotalDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        finally
+        {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(TotalDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public void update(Total model) {

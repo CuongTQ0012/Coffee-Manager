@@ -22,7 +22,6 @@ import model.Total;
  */
 public class AddController extends HttpServlet {
 
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -35,10 +34,9 @@ public class AddController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        request.getRequestDispatcher("../view/total/add.jsp").forward(request, response);
-        
+
+        request.getRequestDispatcher("../view/total/add1.jsp").forward(request, response);
+
     }
 
     /**
@@ -52,27 +50,49 @@ public class AddController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String raw_dID = request.getParameter("did");
-        String raw_tQuan= request.getParameter("tQuan");
-        String raw_tdob= request.getParameter("tdob");
-        
-        Drinks d = new Drinks();
-        d.setdID(Integer.parseInt(raw_dID));
+
+
         
         
+
         
-        TotalDBContext dbTotal = new TotalDBContext();
-        Total t = new Total();
-        t.setdID(d);
-        t.settQuantity(Float.parseFloat(raw_tQuan));
-        t.setTdob(Date.valueOf(raw_tdob));
+        Total tl = new Total();
         
-        dbTotal.insert(t);
+        String[] indexs = request.getParameterValues("index");
+        for (String index : indexs) {
+            
+            Drinks d = new Drinks();
+            d.setdID(Integer.parseInt(request.getParameter("did"+ index)));
+            
+            Total t = new Total();
+            t.setdID(d);
+            t.settQuantity(Float.parseFloat(request.getParameter("tQuan" + index))                 );
+            t.setTdob(Date.valueOf(request.getParameter("tdob" + index)));
+            tl.getTotal().add(t);
+        }
+
+        TotalDBContext db = new TotalDBContext();
+        db.insert1(tl);
         response.sendRedirect("list");
-        
-        
-        
+
+        //---------------------------------------
+//        String raw_dID = request.getParameter("did");
+//        String raw_tQuan= request.getParameter("tQuan");
+//        String raw_tdob= request.getParameter("tdob");
+//        
+//        Drinks d = new Drinks();
+//        d.setdID(Integer.parseInt(raw_dID));
+//        
+//        
+//        
+//        TotalDBContext dbTotal = new TotalDBContext();
+//        Total t = new Total();
+//        t.setdID(d);
+//        t.settQuantity(Float.parseFloat(raw_tQuan));
+//        t.setTdob(Date.valueOf(raw_tdob));
+//        
+//        dbTotal.insert(t);
+//        response.sendRedirect("list");
     }
 
     /**

@@ -64,6 +64,10 @@
         <servlet-name>Edit_DD_Controller</servlet-name>
         <servlet-class>controller.drinks.EditController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Search_Product_Controller</servlet-name>
+        <servlet-class>controller.drinks.SearchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListController</servlet-name>
         <url-pattern>/product/list</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>Edit_DD_Controller</servlet-name>
         <url-pattern>/drinks/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Search_Product_Controller</servlet-name>
+        <url-pattern>/drinks/searchP</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

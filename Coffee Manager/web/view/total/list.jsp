@@ -15,6 +15,8 @@
         <a href="../product/list">Product</a>
         <a href="../drinks/list">Drinks</a>
         <a href="../total/list">Total</a>
+        
+        <h1>List total</h1>
         <table border="1px"> 
             <tr>
                 <td>dID</td>

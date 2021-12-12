@@ -22,6 +22,7 @@
 
     </head>
     <body>
+        <a href="list">List</a>
         <h2>Drinks Detail id: <%=id%> </h2>
 
 
@@ -40,8 +41,9 @@
             </tr>    
             <%}%>
         </table>
-            </br>
-    <input type="button" value="Add Drinks Detail" onclick="window.location.href = 'add'" />
+        </br>
+        <input type="button" value="Add Drinks Detail" 
+               onclick="window.location.href = 'add_drinks_detail?id=<%=id%>'" />
 
-</body>
+    </body>
 </html>

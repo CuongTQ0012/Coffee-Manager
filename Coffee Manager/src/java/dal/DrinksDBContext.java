@@ -28,7 +28,7 @@ public class DrinksDBContext extends DBContext<Drinks> {
 
         ArrayList<Drinks> drinks = new ArrayList<>();
         try {
-            String sql = "SELECT d.dID,d.dName FROM Drinks d";
+            String sql = "SELECT d.dID,d.dName,d.dImage FROM Drinks d";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
 
@@ -37,8 +37,7 @@ public class DrinksDBContext extends DBContext<Drinks> {
                 Drinks d = new Drinks();
                 d.setdID(rs.getInt("dID"));
                 d.setdName(rs.getString("dName"));
-                // bo sung anh sau 
-
+                d.setdImage(rs.getString("dImage"));
                 drinks.add(d);
             }
         } catch (SQLException ex) {
@@ -48,59 +47,47 @@ public class DrinksDBContext extends DBContext<Drinks> {
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    public ArrayList<DrinksDetail> getdetail(int id){
-        
+
+    public ArrayList<DrinksDetail> getdetail(int id) {
+
         ArrayList<DrinksDetail> ddrinks = new ArrayList<>();
-        
+
         try {
             String sql = "SELECT * FROM Drinks d JOIN DrinksDetail dd ON d.dID = dd.dID "
                     + "Join Product p on p.pID = dd.pID "
-                    + "wHERE d.dID = ?"
-                    ;
-            
+                    + "wHERE d.dID = ?";
+
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
 
-                
                 Drinks d = new Drinks();
 //                d.setdID(rs.getInt("dID"));
                 d.setdName(rs.getString("dName"));
-                
+
                 Product p = new Product();
                 p.setpName(rs.getString("pName"));
-                
-                
+
                 DrinksDetail dd = new DrinksDetail();
-                
+
                 dd.setdID(d);
                 dd.setPid(p);
                 dd.setDdQuantity(rs.getFloat("ddQuantity"));
                 dd.setDdID(rs.getInt("ddID"));
                 ddrinks.add(dd);
-                
-
 
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ddrinks;
-        
-        
+
     }
-    
-    
-    
-    
-    
+
     @Override
     public Drinks get(Drinks model) {
-        
+
         try {
             String sql = "SELECT * FROM Drinks d  WHERE d.dID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -108,13 +95,9 @@ public class DrinksDBContext extends DBContext<Drinks> {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
 
-                
                 Drinks d = new Drinks();
                 d.setdID(rs.getInt("dID"));
                 d.setdName(rs.getString("dName"));
-                
-                
-                
 
                 return d;
 
@@ -123,8 +106,7 @@ public class DrinksDBContext extends DBContext<Drinks> {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        
-        
+
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -135,15 +117,17 @@ public class DrinksDBContext extends DBContext<Drinks> {
 
             String sql = "INSERT INTO [Drinks]\n"
                     + "           ([dID]\n"
-                    + "           ,[dName])\n"
+                    + "           ,[dName]"
+                    + "           ,[dImage])\n"
                     + "     VALUES\n"
                     + "           (?\n"
+                    + "           ,?"
                     + "           ,?)";
             PreparedStatement stm = connection.prepareStatement(sql);
 
             stm.setInt(1, model.getdID());
             stm.setString(2, model.getdName());
-
+            stm.setString(3, model.getdImage());
             stm.executeUpdate();
 
         } catch (Exception e) {

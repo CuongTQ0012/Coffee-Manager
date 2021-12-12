@@ -16,8 +16,10 @@
             
             ID: <input type="text" name="did"/> <br/>
             Name: <input type="text" name="dname"/> <br/>
+            Image: <input type="file" name="dimage"/> <br/>
             
-            
+
+
             <br/>
             <input type="submit" value="Save"/>
         </form>

@@ -23,7 +23,9 @@
             <tr>
                 <td><%=p.getdID()%></td>
                 <td><%=p.getdName()%></td>
-                <td></td><!--image-->
+                <td>
+                    <img src="../<%=p.getdImage()%>" width=100px height=120px>
+                </td><!--image-->
                 <td>
                     <input type="button" value="Detail" 
                            onclick="window.location.href = 'detail1?id=<%=p.getdID()%>' " />

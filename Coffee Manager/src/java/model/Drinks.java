@@ -13,6 +13,8 @@ public class Drinks extends BaseModel{
     
     private int dID;
     private String dName;
+    private String dImage;
+    
 
     public Drinks() {
     }
@@ -22,6 +24,17 @@ public class Drinks extends BaseModel{
         this.dName = dName;
     }
 
+    public String getdImage() {
+        return dImage;
+    }
+
+    public void setdImage(String dImage) {
+        this.dImage = dImage;
+    }
+
+    
+    
+    
     public int getdID() {
         return dID;
     }

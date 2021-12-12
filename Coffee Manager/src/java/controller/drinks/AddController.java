@@ -38,11 +38,12 @@ public class AddController extends HttpServlet {
         
         String raw_dId = request.getParameter("did");
         String raw_dName= request.getParameter("dname");
-        
+        String raw_dImage= request.getParameter("dimage");
         
         Drinks d = new Drinks();
         d.setdID(Integer.parseInt(raw_dId));
         d.setdName(raw_dName);
+        d.setdImage("image/"+raw_dImage);
         
         
         

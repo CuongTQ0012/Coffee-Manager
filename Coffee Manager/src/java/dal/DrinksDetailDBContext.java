@@ -100,6 +100,50 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
 
     }
 
+    public void addMore(DrinksDetail dd){
+        try {
+            connection.setAutoCommit(false);
+            String sql = "INSERT INTO [DrinksDetail]\n"
+                    + "           ([dID]\n"
+                    + "           ,[pID]\n"
+                    + "           ,[ddQuantity])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            
+            
+            
+            for (DrinksDetail s : dd.getDrinksDetail()) {
+                PreparedStatement rs = connection.prepareStatement(sql);
+                
+                rs.setInt(1, s.getdID().getdID());
+                rs.setString(2, s.getPid().getpID());
+                rs.setFloat(3, s.getDdQuantity());
+                
+                rs.executeUpdate();
+            }
+            connection.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(DrinksDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(DrinksDetailDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        finally
+        {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(DrinksDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    
     @Override
     public void insert(DrinksDetail model) {
 

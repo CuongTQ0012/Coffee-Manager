@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Admin
@@ -15,6 +17,13 @@ public class DrinksDetail extends BaseModel{
     private float ddQuantity;
     private int ddID;
 
+    private ArrayList<DrinksDetail> drinksDetail = new ArrayList<>();
+
+    public ArrayList<DrinksDetail> getDrinksDetail() {
+        return drinksDetail;
+    }
+    
+    
     public Drinks getdID() {
         return dID;
     }

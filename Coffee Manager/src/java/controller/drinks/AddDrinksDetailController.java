@@ -25,7 +25,6 @@ import model.Product;
  */
 public class AddDrinksDetailController extends HttpServlet {
 
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -38,11 +37,10 @@ public class AddDrinksDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         String id = request.getParameter("id");
         int id_int = Integer.parseInt(id);
-        
+
 //        
 //        ArrayList<Product> product = new ArrayList<>();
 //        request.setAttribute("product", product);
@@ -52,13 +50,12 @@ public class AddDrinksDetailController extends HttpServlet {
         d.setdID(id_int);
         Drinks drinks = dbDrinks.get(d);
         request.setAttribute("drinks", drinks);
-        
+
 //        request.getRequestDispatcher("../view/drinks/detail.jsp").forward(request, response);
         request.getRequestDispatcher("../view/drinks/addDrinksDetail.jsp").forward(request, response);
-        
+
     }
-    
-    
+
     DrinksDBContext dbDrinks = new DrinksDBContext();
     DrinksDetailDBContext DBdd = new DrinksDetailDBContext();
     ProductDBContext dbPro = new ProductDBContext();
@@ -66,41 +63,35 @@ public class AddDrinksDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-//        Department dept = new Department();
-//        dept.setId(Integer.parseInt(request.getParameter("did")));
-//        dept.setName(request.getParameter("dname"));
-//        
-//        
-//        
+
+//        DrinksDetail ddl = new DrinksDetail();
+//
 //        String[] indexs = request.getParameterValues("index");
 //        for (String index : indexs) {
-//            Student student = new Student();
-//            student.setId(Integer.parseInt(request.getParameter("sid"+index)));
-//            student.setName(request.getParameter("sname"+index));
-//            student.setDob(Date.valueOf(request.getParameter("dob"+index)));
-//            student.setGender(request.getParameter("gender"+index).equals("male"));
-//            student.setDept(dept);
-//            dept.getStudents().add(student);
+//            DrinksDetail dd = new DrinksDetail();
+//            
+//            Product p = new Product();
+//            p.setpID(request.getParameter("pid"+index));
+//            
+//            Drinks d = new Drinks();
+//            d.setdID(Integer.parseInt(request.getParameter("did"+index)));
+//            
+//            dd.setdID(d);
+//            dd.setPid(p);
+//            
+//            dd.setDdQuantity(Float.parseFloat(request.getParameter("tQuan" + index)));
+//
+//            ddl.getDrinksDetail().add(dd);
 //        }
-//        
-//        
-//        
-//        DepartmentDBContext db = new DepartmentDBContext();
-//        db.insert(dept);
+//
+//        DrinksDetailDBContext db = new DrinksDetailDBContext();
+//        db.insert(ddl);
+        
+        
+        
 //        response.getWriter().println("done");
-        
-        
-        
+
         //-----------------------------------------------
-        
-        
-        
-        
-        
-        
-        
         Product p = new Product();
         p.setpID(request.getParameter("pid"));
         
@@ -114,7 +105,7 @@ public class AddDrinksDetailController extends HttpServlet {
         dd.setPid(p);
         dd.setDdQuantity(Float.parseFloat(request.getParameter("ddQuan")));
         DBdd.insert(dd);
-        
+//        
         String id = request.getParameter("did");
         String respon = "detail1?id=" + id;
         

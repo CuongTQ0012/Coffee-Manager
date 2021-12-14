@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Add Drinks Detail</title>
         <%
             Drinks dr = (Drinks)request.getAttribute("drinks");
             ArrayList<Product> product = (ArrayList<Product>)request.getAttribute("product");

@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Edit Product</title>
         <%
             ArrayList<Category> cate = (ArrayList<Category>)request.getAttribute("cate");
             Product pro = (Product)request.getAttribute("product");

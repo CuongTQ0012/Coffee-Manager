@@ -68,7 +68,27 @@ public class ListController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        ProductDBContext proDB = new ProductDBContext();
+        
+        String name = request.getParameter("search");
+        if(name == null)
+            name = "";
+        
+        
+        ArrayList<Product> pro = proDB.search(name);
+        
+        request.setAttribute("product", pro);
+//        request.setAttribute("search", name);
+        
+        
+        
+        request.getRequestDispatcher("../view/product/list.jsp").forward(request, response);
+        
+        
+        
+        
+        
     }
 
     /**

@@ -41,11 +41,9 @@ public class AddDrinksDetailController extends HttpServlet {
         String id = request.getParameter("id");
         int id_int = Integer.parseInt(id);
 
-//        
-//        ArrayList<Product> product = new ArrayList<>();
-//        request.setAttribute("product", product);
-//        
-//        
+        ArrayList<Product> product = new ArrayList<>();
+        request.setAttribute("product", product);
+
         Drinks d = new Drinks();
         d.setdID(id_int);
         Drinks drinks = dbDrinks.get(d);
@@ -64,52 +62,46 @@ public class AddDrinksDetailController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        DrinksDetail ddl = new DrinksDetail();
-//
-//        String[] indexs = request.getParameterValues("index");
-//        for (String index : indexs) {
-//            DrinksDetail dd = new DrinksDetail();
-//            
-//            Product p = new Product();
-//            p.setpID(request.getParameter("pid"+index));
-//            
-//            Drinks d = new Drinks();
-//            d.setdID(Integer.parseInt(request.getParameter("did"+index)));
-//            
-//            dd.setdID(d);
-//            dd.setPid(p);
-//            
-//            dd.setDdQuantity(Float.parseFloat(request.getParameter("tQuan" + index)));
-//
-//            ddl.getDrinksDetail().add(dd);
-//        }
-//
-//        DrinksDetailDBContext db = new DrinksDetailDBContext();
-//        db.insert(ddl);
-        
-        
-        
-//        response.getWriter().println("done");
+
+
+
+        String id = request.getParameter("id");
+        int id_int = Integer.parseInt(id);
+        Drinks d1 = new Drinks();
+        d1.setdID(id_int);
+        Drinks drinks = dbDrinks.get(d1);
+        request.setAttribute("drinks", drinks);
+
+        String name = request.getParameter("search");
+        if (name == null) {
+            name = "";
+        }
+
+        ArrayList<Product> pro = dbPro.search(name);
+
+        request.setAttribute("product", pro);
+//        request.setAttribute("search", name);
+
+        request.getRequestDispatcher("../view/drinks/addDrinksDetail.jsp").forward(request, response);
 
         //-----------------------------------------------
-        Product p = new Product();
-        p.setpID(request.getParameter("pid"));
-        
-
-        Drinks d = new Drinks();
-        d.setdID(Integer.parseInt(request.getParameter("did")));
-
-        DrinksDetail dd = new DrinksDetail();
-
-        dd.setdID(d);
-        dd.setPid(p);
-        dd.setDdQuantity(Float.parseFloat(request.getParameter("ddQuan")));
-        DBdd.insert(dd);
+//        Product p = new Product();
+//        p.setpID(request.getParameter("pid"));
+//
+//        Drinks d = new Drinks();
+//        d.setdID(Integer.parseInt(request.getParameter("did")));
+//
+//        DrinksDetail dd = new DrinksDetail();
+//
+//        dd.setdID(d);
+//        dd.setPid(p);
+//        dd.setDdQuantity(Float.parseFloat(request.getParameter("ddQuan")));
+//        DBdd.insert(dd);
 //        
-        String id = request.getParameter("did");
-        String respon = "detail1?id=" + id;
-        
-        response.sendRedirect(respon);
+//        String id1 = request.getParameter("did");
+//        String respon = "detail1?id=" + id1;
+//
+//        response.sendRedirect(respon);
     }
 
     @Override

@@ -5,15 +5,19 @@
  */
 package controller.total;
 
+import dal.DrinksDBContext;
+import dal.ProductDBContext;
 import dal.TotalDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Drinks;
+import model.Product;
 import model.Total;
 
 /**
@@ -35,9 +39,14 @@ public class AddController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        
+        
+        ArrayList<Drinks> drinks = new ArrayList<>();
+        request.setAttribute("drinks", drinks);
+        
         request.getRequestDispatcher("../view/total/add1.jsp").forward(request, response);
 
-    }
+    }DrinksDBContext db = new DrinksDBContext();
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -47,11 +56,29 @@ public class AddController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+//    ProductDBContext proDB = new ProductDBContext();
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
 
+        
+        
+        
+        
+        
+        
+        String name = request.getParameter("search");
+        if(name == null)
+            name = "";
+        
+        ArrayList<Drinks> dri = db.search(name);
+        
+        request.setAttribute("drinks", dri);
+        request.getRequestDispatcher("../view/total/add1.jsp").forward(request, response);
+        
         
         
 

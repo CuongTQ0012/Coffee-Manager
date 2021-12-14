@@ -26,13 +26,36 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+//    public int getID(int id) {
+//
+//        try {
+//            int result;
+//            String sql = "SELECT * FROM [DrinksDetail]  wHERE [DrinksDetail].ddID = ?";
+//            PreparedStatement stm = connection.prepareStatement(sql);
+//            stm.setInt(1, id);
+//            ResultSet rs = stm.executeQuery();
+//
+//            Drinks d = new Drinks();
+//            d.setdID(rs.getInt("dID"));
+//            d.setdName(rs.getString("dName"));
+//
+//            result = d.getdID();
+//            return result;
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return 0;
+//
+//    }
+
     @Override
     public DrinksDetail get(DrinksDetail model) {
 
         try {
-            String sql = "SELECT * FROM Drinks d INNER JOIN DrinksDetail dd \n" +
-"                    ON d.dID = dd.dID INNER Join Product p \n" +
-"                    on p.pID = dd.pID wHERE dd.ddID = ?";
+            String sql = "SELECT * FROM Drinks d INNER JOIN DrinksDetail dd \n"
+                    + "                    ON d.dID = dd.dID INNER Join Product p \n"
+                    + "                    on p.pID = dd.pID wHERE dd.ddID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, model.getDdID());
             ResultSet rs = stm.executeQuery();
@@ -100,7 +123,7 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
 
     }
 
-    public void addMore(DrinksDetail dd){
+    public void addMore(DrinksDetail dd) {
         try {
             connection.setAutoCommit(false);
             String sql = "INSERT INTO [DrinksDetail]\n"
@@ -111,16 +134,14 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
                     + "           (?\n"
                     + "           ,?\n"
                     + "           ,?)";
-            
-            
-            
+
             for (DrinksDetail s : dd.getDrinksDetail()) {
                 PreparedStatement rs = connection.prepareStatement(sql);
-                
+
                 rs.setInt(1, s.getdID().getdID());
                 rs.setString(2, s.getPid().getpID());
                 rs.setFloat(3, s.getDdQuantity());
-                
+
                 rs.executeUpdate();
             }
             connection.commit();
@@ -131,9 +152,7 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
             } catch (SQLException ex1) {
                 Logger.getLogger(DrinksDetailDBContext.class.getName()).log(Level.SEVERE, null, ex1);
             }
-        }
-        finally
-        {
+        } finally {
             try {
                 connection.setAutoCommit(true);
             } catch (SQLException ex) {
@@ -141,9 +160,7 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
             }
         }
     }
-    
-    
-    
+
     @Override
     public void insert(DrinksDetail model) {
 
@@ -184,13 +201,8 @@ public class DrinksDetailDBContext extends DBContext<DrinksDetail> {
                     + "      ,[ddQuantity] = ?\n"
                     + " WHERE [ddID]= ?";
 
-
             PreparedStatement stm = connection.prepareStatement(sql);
 
-            
-            
-            
-            
             stm.setInt(1, model.getdID().getdID());
             stm.setString(2, model.getPid().getpID());
             stm.setFloat(3, model.getDdQuantity());

@@ -49,6 +49,45 @@ public class ProductDBContext extends DBContext<Product> {
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public ArrayList<Product> search(String name
+//    ,Date dobFrom,Date dobTo
+    ) {
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Product] p "
+                    + "INNER JOIN Category c ON p.cID = c.cid  WHERE 1=1 AND p.pName like ?";
+            
+                
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1,'%'+name+'%');
+            ResultSet rs = stm.executeQuery();
+            while(rs.next())
+            {
+                
+                Category c = new Category();
+                c.setcID(rs.getInt("cID"));
+                c.setcName(rs.getString("cName"));
+
+                Product p = new Product();
+                p.setpID(rs.getString("pID"));
+                p.setpName(rs.getString("pName"));
+                p.setpQuantity(rs.getFloat("pQuantity"));
+                p.setCate(c);
+                
+                product.add(p);
+                
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+    
+    
+    
 
     @Override
     public Product get(Product model) {

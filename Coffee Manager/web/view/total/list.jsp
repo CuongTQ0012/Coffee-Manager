@@ -17,6 +17,7 @@
         <a href="../total/list">Total</a>
         
         <h1>List total</h1>
+        <%if(total.size() > 0){%>  
         <table border="1px"> 
             <tr>
                 <td>dID</td>
@@ -45,7 +46,7 @@
 
         </table>
 
-
+<%}%>  
 
 
         <input type="button" value="Add" onclick="window.location.href = 'add'" />

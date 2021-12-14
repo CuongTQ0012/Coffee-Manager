@@ -16,6 +16,24 @@
         <a href="../product/list">Product</a>
         <a href="../drinks/list">Drinks</a>
         <a href="../total/list">Total</a>
+        
+        <form action="list" method="POST">
+            
+            
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td>Name Product</td>
+                        <td><input type="text" name="search" value="" /></td>
+                        <td><input type="submit" value="Search" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </form>
+        
+        
+        
         <table border="1px"> 
             <tr>
                 <td>ID</td>

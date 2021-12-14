@@ -1,18 +1,19 @@
+package controller.drinks;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.drinks;
 
 import dal.DrinksDetailDBContext;
-import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Drinks;
 import model.DrinksDetail;
 import model.Product;
 
@@ -20,7 +21,7 @@ import model.Product;
  *
  * @author Admin
  */
-public class DeleteDetailController extends HttpServlet {
+public class Add2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,28 +34,29 @@ public class DeleteDetailController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        DrinksDetailDBContext dbdd = new DrinksDetailDBContext();
-        
-        String id = request.getParameter("id");
-        int id_int = Integer.parseInt(id);
+//        /drinks/forAddDetail
+        Product p = new Product();
+        p.setpID(request.getParameter("pid"));
+
+        Drinks d = new Drinks();
+        d.setdID(Integer.parseInt(request.getParameter("did")));
+
         DrinksDetail dd = new DrinksDetail();
-        dd.setDdID(id_int);
+
+        dd.setdID(d);
+        dd.setPid(p);
+        dd.setDdQuantity(Float.parseFloat(request.getParameter("ddQuan")));
+        DBdd.insert(dd);
+        
+        String id1 = request.getParameter("did");
+        String respon = "detail1?id=" + id1;
+
+        response.sendRedirect(respon);
         
         
-        
-        
-        
-        
-        dbdd.delete(dd);
-        
-        response.sendRedirect("list");
-//        String respon = "detail1?id=" + id;
-//        
-//        response.sendRedirect(respon);
         
     }
-
+DrinksDetailDBContext DBdd = new DrinksDetailDBContext();
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

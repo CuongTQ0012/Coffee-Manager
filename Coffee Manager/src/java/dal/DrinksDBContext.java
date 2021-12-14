@@ -47,6 +47,37 @@ public class DrinksDBContext extends DBContext<Drinks> {
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public ArrayList<Drinks> search(String name
+//    ,Date dobFrom,Date dobTo
+    ) {
+        ArrayList<Drinks> drinks = new ArrayList<>();
+        try {
+            String sql = "SELECT d.dID,d.dName,d.dImage FROM Drinks d  WHERE 1=1 AND d.dName like ?";
+            
+                
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1,'%'+name+'%');
+            ResultSet rs = stm.executeQuery();
+            while(rs.next())
+            {
+                
+                 Drinks d = new Drinks();
+                d.setdID(rs.getInt("dID"));
+                d.setdName(rs.getString("dName"));
+                d.setdImage(rs.getString("dImage"));
+                drinks.add(d);
+                
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return drinks;
+    }
+    
+    
 
     public ArrayList<DrinksDetail> getdetail(int id) {
 

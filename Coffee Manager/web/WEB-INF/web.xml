@@ -72,6 +72,10 @@
         <servlet-name>Add2</servlet-name>
         <servlet-class>controller.drinks.Add2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>homeController</servlet-name>
+        <servlet-class>homeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListController</servlet-name>
         <url-pattern>/product/list</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>Add2</servlet-name>
         <url-pattern>/drinks/forAddDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeController</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
